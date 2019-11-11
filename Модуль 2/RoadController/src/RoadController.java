@@ -19,12 +19,12 @@ public class RoadController
     {
         System.out.println("Сколько автомобилей сгенерировать?");
 
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in); // массив объектов типо String?? 
         int carsCount = scanner.nextInt(); // создание переменной carsCount
 
-        for(int i = 0; i < carsCount; i++)
+        for(int i = 0; i < carsCount; i++) // int i это ведь тоже переменная?? 
         {
-            Car car = Camera.getNextCar();
+            Car car = Camera.getNextCar(); // переменная типа Car??
             System.out.println(car);
 
             //Пропускаем автомобили спецтранспорта бесплатно
@@ -46,7 +46,7 @@ public class RoadController
     /**
      * Расчёт стоимости проезда исходя из массы и высоты
      */
-    private static int calculatePrice(Car car)
+    private static int calculatePrice(Car car) // переменная calculatePrice??
     {
         int carHeight = car.height; // создание переменной carHeight
         int price = 0; // создание переменной price
