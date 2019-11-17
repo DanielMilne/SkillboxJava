@@ -2,7 +2,7 @@ import java.util.Scanner; // импорт сканера
 
 public class Main //класс мейн
 {
-    private static int minIncome = 200000; // переменные
+   // private static int minIncome = 200000; // переменные
     private static int maxIncome = 900000;
 
     private static int officeRentCharge = 140000;
@@ -18,14 +18,14 @@ public class Main //класс мейн
     private static double minInvestmentsAmount = 100000; // переменные
     
     private static double taxFromMininvest = (minInvestmentsAmount/(1-mainTaxPercent))-minInvestmentsAmount; 
-    private static double minIncome = ((calculateFixedCharges()+minInvestmentsAmount)/ (1-managerPercent))+taxFromMininvest;
+    private static double minIncome = ((calculateFixedCharges()+minInvestmentsAmount+taxFromMininvest)/ (1-managerPercent));
     
     public static void main(String[] args) // метод мейн
     {
         while (true) // цикл while
         {
             System.out.println("Введите сумму доходов компании за месяц " + // текст в консоль
-                    "(от 200 до 900 тысяч рублей): ");
+                    "(от" + minIncome + "до 900 тысяч рублей): ");
             int income = (new Scanner(System.in)).nextInt(); // вызываем сканер в переменную income
 
             if (!checkIncomeRange(income)) { // цикл if проверяет границы дохода
