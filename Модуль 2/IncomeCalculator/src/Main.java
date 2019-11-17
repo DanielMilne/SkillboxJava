@@ -16,7 +16,10 @@ public class Main //класс мейн
     private static double managerPercent = 0.15;
 
     private static double minInvestmentsAmount = 100000; // переменные
-
+    
+    private static double taxFromMininvest = (minInvestmentsAmount/(1-mainTaxPercent))-minInvestmentsAmount; 
+    private static double minIncome = ((calculateFixedCharges()+minInvestmentsAmount)/ (1-managerPercent))+taxFromMininvest;
+    
     public static void main(String[] args) // метод мейн
     {
         while (true) // цикл while
