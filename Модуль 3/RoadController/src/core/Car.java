@@ -2,64 +2,68 @@ package core;
 
 public class Car
 {
-    private String number;
-    private Integer height;
-    private Double weight;
-    private Boolean hasVehicle;
-    private Boolean isSpecial;
+    public String number;        // создание переменной number
+    public int height;           // создание переменной height
+    public double weight;        // создание переменной weight
+    public boolean hasVehicle;   // создание переменной hasVehicle
+    public boolean isSpecial;    // создание переменной isSpecial
 
-    public Car(String carNumber, Integer carHeight, Double carWeight, Boolean carHasVehicle)
+    public String toString()
     {
-        number = carNumber;
-        height = carHeight;
-        weight = carWeight;
-        hasVehicle = carHasVehicle;
-        isSpecial = false;
+        String special = isSpecial ? "СПЕЦТРАНСПОРТ " : "";  // создание переменной special
+        return "\n=========================================\n" +
+                special + "Автомобиль с номером " + number +
+                ":\n\tВысота: " + height + " мм\n\tМасса: " + weight + " кг";
     }
 
-    //=========================================================================
-
-    public void setIsSpecial()
+    //Setter getNumber
+    public void setNumber(String number)
     {
-        isSpecial = true;
+        this.number = number;
     }
-
-    //=========================================================================
-
+    //Getter getNumber
     public String getNumber()
     {
         return number;
     }
-
-    public Integer getHeight()
+    //Setter getHeight
+    public void setHeight(int height)
+    {
+        this.height = height;
+    }
+    //Getter getHeight
+    public int getHeight()
     {
         return height;
     }
-
-    public Boolean isSpecial()
+    //Setter getWeight
+    public void setWeight(double weight)
     {
-        return isSpecial;
+        this.weight = weight;
     }
-
-    public Boolean hasVehicle()
-    {
-        return hasVehicle;
-    }
-
-    //=========================================================================
-
-    Double getWeight()
+    //Getter getWeight
+    public double getWeight()
     {
         return weight;
     }
-
-    //=========================================================================
-
-    public String toString()
+    //Setter hasVehicle
+    public void setHasVehicle(boolean hasVehicle)
     {
-        String special = isSpecial ? "СПЕЦТРАНСПОРТ " : "";
-        return "\n=========================================\n" +
-            special + "Автомобиль с номером " + number +
-            ":\n\tВысота: " + height + " мм\n\tМасса: " + weight + " кг";
+        this.hasVehicle = hasVehicle;
+    }
+    //Getter hasVehicle
+    public boolean getHasVehicle()
+    {
+        return hasVehicle;
+    }
+    //Setter IsSpecial
+    public void setIsSpecial(boolean isSpecial)
+    {
+        this.isSpecial = isSpecial;
+    }
+    //Getter IsSpecial
+    public boolean getIsSpecial()
+    {
+        return isSpecial;
     }
 }
