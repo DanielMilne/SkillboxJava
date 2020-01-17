@@ -12,22 +12,27 @@ public class Cat {
 
     private double minWeight = 90.0;
     private double maxWeight = 1000.0;
-    public static double foodEated;
-    public static int count;
-    /*
-    public Cat() {
-        weight = 1500.0 + 3000.0 * Math.random();
-        originWeight = weight;
-        minWeight = minweight;
-        maxWeight = maxweight;
-        count++;                                 // урок 3. добавление в счетчик кошку
-    }
-    */
+    public  double foodEated;                           // убрал static
+    public int count;
+
+   // public Cat() {
+       // this(1500.0 + 3000.0 * Math.random());
+      //  originWeight = weight;
+      //  minWeight = minweight;
+     //   maxWeight = maxweight;
+    //    count++;                                 // урок 3. добавление в счетчик кошку
+   // }
+
 
     // урок 5. массу и имя задаются при создании кошки
     public Cat(String name, double weight) {
         this.name = name;
         this.weight = weight;
+        this.originWeight = weight;
+        if (this.weight >maxWeight || this.weight < minWeight)
+            System.out.println("Cat is dead");
+        else
+        count++;
     }
 
     // Урок 7 метод копирования
@@ -91,7 +96,7 @@ public class Cat {
     }
 
     // метод возвращает массу съединной еды
-    public static Double foodCount() {
+    public Double foodCount() {                                // убрал static
         System.out.println(foodEated);
         return foodEated;
     }
