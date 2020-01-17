@@ -6,8 +6,6 @@ public class Main {
 
         Airport airport = Airport.getInstance();
         airport.getTerminals();
-        System.out.println(airport.getAllAircrafts());
-
-
+        System.out.println(Integer.valueOf(airport.getAllAircrafts().size()));
     }
 }
