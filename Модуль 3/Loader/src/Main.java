@@ -3,17 +3,29 @@ public class Main {
     public static void main(String[] args) {
 
         // проверка метода копирования кошки
-        Cat cat1 = new Cat("Murka", 800);
-        System.out.println(cat1.getStatus());
-        System.out.println(cat1.getWeight());
+        Cat cat1 = new Cat("Murka", 90.0);
+        System.out.println(cat1.getCount());
+        Cat cat3 = new Cat("vasja", 120.0);
+        //  Cat cat4 = new Cat(); // почему если снять комментирование этой строки вес других кошек тоже становится рандомом
+        System.out.println(cat1.getCount());
         Cat cat2 = cat1.getCopyCat(cat1);
-        System.out.println(cat2.getStatus());
-        System.out.println(cat2.getWeight());
-        cat2.pooPoo();
-        System.out.println(cat2.getWeight());
+        System.out.println(cat1.getCount());
+        cat3.pooPoo();
+        System.out.println(cat3.getWeight());
+        cat3.pooPoo();
+        System.out.println(cat3.getWeight());
+        cat3.pooPoo();
+        System.out.println(cat3.getWeight());
+        cat3.pooPoo();
+        cat3.pooPoo();
+        System.out.println(cat3.getCount());
+        System.out.println(cat1.getCount());
+        System.out.println(cat2.getCount());
 
+        System.out.println(cat3.getWeight());
+        cat3.pooPoo();
 
-       /* Урок 1.
+        /* Урок 1.
         // 5 кошек
         Cat cat1 = new Cat();
         Cat cat2 = new Cat();
