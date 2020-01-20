@@ -1,27 +1,20 @@
 
 public class Cat {
     private double originWeight;
-    private double weight;
-
-    //public static final double minweight = 90.0;      // Урок 4. минимальный вес
-    // public static final double maxweight = 1000.0;    // максимальный вес
-    public static final int eyescount = 2;              // константа количество глаз
+    private static double weight;
+    public static final int EYESCOUNT = 2;              // константа количество глаз
     private Colors color;
     public static String name;
+    private static final double MIN_WEIGHT = 90.0;
+    private static final double MAX_WEIGHT = 1000.0;
+    public double foodEated;                           // убрал static
+    public static int count = 0;
 
-
-    private double minWeight = 90.0;
-    private double maxWeight = 1000.0;
-    public  double foodEated;                           // убрал static
-    public int count;
-
-   // public Cat() {
-       // this(1500.0 + 3000.0 * Math.random());
-      //  originWeight = weight;
-      //  minWeight = minweight;
-     //   maxWeight = maxweight;
-    //    count++;                                 // урок 3. добавление в счетчик кошку
-   // }
+    public Cat() {
+        weight = 1500.0 + 3000.0 * Math.random();
+        originWeight = weight;
+        count++;                                 // урок 3. добавление в счетчик кошку
+    }
 
 
     // урок 5. массу и имя задаются при создании кошки
@@ -29,10 +22,11 @@ public class Cat {
         this.name = name;
         this.weight = weight;
         this.originWeight = weight;
-        if (this.weight >maxWeight || this.weight < minWeight)
+        if (this.weight > MAX_WEIGHT || this.weight < MIN_WEIGHT) {
             System.out.println("Cat is dead");
-        else
-        count++;
+        } else {
+            count++;
+        }
     }
 
     // Урок 7 метод копирования
@@ -56,43 +50,60 @@ public class Cat {
         return color;
     }
 
+    // метод мяу
     public void meow() {
-        weight = weight - 1;
+        boolean wasAlive = (weight < MAX_WEIGHT && weight > MIN_WEIGHT);
+        weight--;
+        if (wasAlive && weight > MAX_WEIGHT || weight < MIN_WEIGHT) {
+            count--;
+        }
         System.out.println("Meow");
     }
 
+    // метод еда
     public void feed(Double amount) {
+        boolean wasAlive = (weight < MAX_WEIGHT && weight > MIN_WEIGHT);
         weight = weight + amount;
         foodEated = foodEated + amount;
+        if (wasAlive && weight > MAX_WEIGHT || weight < MIN_WEIGHT) {
+            count--;
+        }
     }
 
+    // метод пить
     public void drink(Double amount) {
+        boolean wasAlive = (weight < MAX_WEIGHT && weight > MIN_WEIGHT);
         weight = weight + amount;
+        if (wasAlive && weight > MAX_WEIGHT || weight < MIN_WEIGHT) {
+            count--;
+        }
     }
+
+    // Урок 2. метод сходить в туалет
+    public void pooPoo() {
+        boolean wasAlive = (weight < MAX_WEIGHT && weight > MIN_WEIGHT);
+        weight = weight - 10;
+        if (wasAlive && (weight > MAX_WEIGHT || weight < MIN_WEIGHT)) {
+            count--;
+        }
+
+    }
+
 
     public Double getWeight() {
         return weight;
     }
 
     public String getStatus() {
-        if (weight < minWeight) {
-            count--;                            // Урок 3. уменьшение счетчика
+        if (weight < MIN_WEIGHT) {
             return "Dead";
-        } else if (weight > maxWeight) {
-            count--;                            // Урок 3. уменьшение счетчика
+        } else if (weight > MAX_WEIGHT) {
             return "Exploded";
-
         } else if (weight > originWeight) {
             return "Sleeping";
         } else {
             return "Playing";
         }
-    }
-
-    // Урок 2. метод сходить в туалет
-    public void pooPoo() {
-        weight = weight - 10;
-        System.out.println("Poo");
     }
 
     // метод возвращает массу съединной еды
@@ -105,5 +116,4 @@ public class Cat {
     public int getCount() {
         return count;
     }
-
 }
