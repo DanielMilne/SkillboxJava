@@ -1,11 +1,11 @@
 
 public class Cat {
     private double originWeight;
-    private static double weight;
+    private double weight;
     public static final int EYESCOUNT = 2;              // константа количество глаз
     private Colors color;
     public static String name;
-    private static final double MIN_WEIGHT = 90.0;
+    private static final double MIN_WEIGHT = 80.0;
     private static final double MAX_WEIGHT = 1000.0;
     public double foodEated;                           // убрал static
     public static int count = 0;
@@ -52,41 +52,44 @@ public class Cat {
 
     // метод мяу
     public void meow() {
-        boolean wasAlive = (weight < MAX_WEIGHT && weight > MIN_WEIGHT);
+        boolean wasAlive = (weight <= MAX_WEIGHT && weight >= MIN_WEIGHT);
         weight--;
-        if (wasAlive && weight > MAX_WEIGHT || weight < MIN_WEIGHT) {
+        if (wasAlive && (weight < MIN_WEIGHT || weight > MAX_WEIGHT)) {
             count--;
+            System.out.println("кошка умирает один раз и счетчик не уменьшается - победа :)");
         }
         System.out.println("Meow");
     }
 
     // метод еда
     public void feed(Double amount) {
-        boolean wasAlive = (weight < MAX_WEIGHT && weight > MIN_WEIGHT);
+        boolean wasAlive = (weight <= MAX_WEIGHT && weight >= MIN_WEIGHT);
         weight = weight + amount;
         foodEated = foodEated + amount;
-        if (wasAlive && weight > MAX_WEIGHT || weight < MIN_WEIGHT) {
+        if (wasAlive && (weight < MIN_WEIGHT || weight > MAX_WEIGHT)) {
             count--;
+            System.out.println("кошка умирает один раз и счетчик не уменьшается - победа :)");
         }
     }
 
     // метод пить
     public void drink(Double amount) {
-        boolean wasAlive = (weight < MAX_WEIGHT && weight > MIN_WEIGHT);
+        boolean wasAlive = (weight <= MAX_WEIGHT && weight >= MIN_WEIGHT);
         weight = weight + amount;
-        if (wasAlive && weight > MAX_WEIGHT || weight < MIN_WEIGHT) {
+        if (wasAlive && (weight < MIN_WEIGHT || weight > MAX_WEIGHT)) {
             count--;
+            System.out.println("кошка умирает один раз и счетчик не уменьшается - победа :)");
         }
     }
 
     // Урок 2. метод сходить в туалет
     public void pooPoo() {
-        boolean wasAlive = (weight < MAX_WEIGHT && weight > MIN_WEIGHT);
+        boolean wasAlive = (weight <= MAX_WEIGHT && weight >= MIN_WEIGHT);
         weight = weight - 10;
-        if (wasAlive && (weight > MAX_WEIGHT || weight < MIN_WEIGHT)) {
+        if (wasAlive && (weight < MIN_WEIGHT || weight > MAX_WEIGHT)) {
             count--;
+            System.out.println("кошка умирает один раз и счетчик не уменьшается - победа :)");
         }
-
     }
 
 
