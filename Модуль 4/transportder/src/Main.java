@@ -1,19 +1,20 @@
 public class Main {
+    private static final int MAX_BOX_IN_TRUCK = 324;
+    private static final int MAX_BOX_IN_CONTAINER = 27;
 
 
     public static void main(String[] args) {
-
         int containerId = 0;
         int cargo = 1;
         int boxCount = 700;
         for (int b = 0; b < boxCount; b++) {
-            if (b % 324 == 0) {
-                System.out.println("грузовик " + cargo++);
+            if (b % MAX_BOX_IN_TRUCK == 0) {
+                System.out.printf("Грузовик %d %n", cargo++);
             }
-            if (b % 27 == 0) {
-                System.out.println("Контейнер " + containerId++);
+            if (b % MAX_BOX_IN_CONTAINER == 0) {
+                System.out.printf(" Контейнер %d %n", containerId++);
             }
-            System.out.println(". Ящик " + b);
+            System.out.printf("  . Ящик %d %n", b);
         }
     }
 }
