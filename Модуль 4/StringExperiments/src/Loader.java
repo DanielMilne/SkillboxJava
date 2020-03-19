@@ -2,7 +2,21 @@ import java.util.Scanner;
 
 public class Loader {
     public static void main(String[] args) {
+        
+          Scanner scan = new Scanner(System.in);
+        System.out.println("Введите ФИО:");
+        String fio = scan.nextLine();
 
+        String[] fio2 = fio.split("\\b\\s", 3);
+        System.out.println("Фамилиия: " + fio2[0]);
+        if (fio2.length > 1) {
+            System.out.println("Имя: " + fio2[1]);
+        }
+        if (fio2.length > 2)
+            System.out.println("Отчество: " + fio2[2]);
+
+       
+   /*     
         Scanner scan = new Scanner(System.in);
         System.out.println("Введите ФИО:");
         String fio = scan.nextLine();
@@ -41,6 +55,7 @@ public class Loader {
             System.out.println("пусто");
 
         }
+        */
 
     }
 
