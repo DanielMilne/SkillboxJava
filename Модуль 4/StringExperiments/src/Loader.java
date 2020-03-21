@@ -6,7 +6,13 @@ public class Loader {
           Scanner scan = new Scanner(System.in);
         System.out.println("Введите ФИО:");
         String fio = scan.nextLine();
-
+        
+        var m = Pattern.compile("(^\\w+\\s)(\\w+\\s)(\\w+\\w)?").matcher(fio);
+        if (m.find()) {
+            System.out.println("Имя: " + m.group(1));
+            System.out.println("Фамилия: " + m.group(2));
+            System.out.println("Отчество " + m.group(3));
+ /*
         String[] fio2 = fio.split("\\b\\s", 3);
         System.out.println("Фамилиия: " + fio2[0]);
         if (fio2.length > 1) {
@@ -16,7 +22,7 @@ public class Loader {
             System.out.println("Отчество: " + fio2[2]);
 
        
-   /*     
+       
         Scanner scan = new Scanner(System.in);
         System.out.println("Введите ФИО:");
         String fio = scan.nextLine();
