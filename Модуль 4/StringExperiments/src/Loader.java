@@ -7,7 +7,7 @@ public class Loader {
         System.out.println("Введите ФИО:");
         String fio = scan.nextLine();
         
-        var m = Pattern.compile("(^\\w+\\s)(\\w+\\s)(\\w+\\w)?").matcher(fio);
+        var m = Pattern.compile("(^\\w+\\b)\\s*(\\w+)\\s*(\\w+)?").matcher(fio);
         if (m.find()) {
             System.out.println("Имя: " + m.group(1));
             System.out.println("Фамилия: " + m.group(2));
