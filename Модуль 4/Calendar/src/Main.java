@@ -1,4 +1,26 @@
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        int listCount = 0;
+        int yearOfBirth = 1992;
+        while (yearOfBirth < 2021) {
+            LocalDate startYear = LocalDate.of(yearOfBirth, 06, 05); // 2018-01-21T09:11:48.486298
+            // LocalDate minusYears = now.plusYears(1); // 2020-01-21T09:11:48.486298  // понял как это работет
+            System.out.println(startYear.format(DateTimeFormatter.ofPattern(listCount + " - " + "dd.MM.yyyy - E")));
+            listCount++;
+            yearOfBirth++;
+
+        }
+    }
+}
+
+
+
+/*import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Date;
@@ -22,5 +44,7 @@ public class Main {
         }
     }
     }
+*\
+
 
 
