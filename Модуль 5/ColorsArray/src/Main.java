@@ -5,10 +5,9 @@ public class Main {
         String[] colors = text.split(",?\\s+");
 
         int len = colors.length;
-        String temp;
 
         for (int i = 0; i < len / 2; i++) {
-            temp = colors[len - i - 1];
+            String temp = colors[len - i - 1];
             colors[len - i - 1] = colors[i];
             colors[i] = temp;
 
