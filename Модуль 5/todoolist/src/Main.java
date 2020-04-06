@@ -13,9 +13,7 @@ public class Main {
         todoList.add("третье дело");
 
         //вывод списка в консоль
-        for (int i = 0; i < todoList.size(); i++) {
-            System.out.println(todoList.get(i));
-        }
+        printList(todoList);
         // Вопрос: правильно ли я использую/декларирую переменную String command?
         String command = "null";
         Scanner scan = new Scanner(System.in);
@@ -25,9 +23,13 @@ public class Main {
             command = scan.nextLine();
             // удаление дела из списка
             if (command.matches("DELETE\\s\\d*")) {
-                String deleteFunction = command.replaceAll("[^0-9]", "");
-                int result = Integer.parseInt(deleteFunction);
-                todoList.remove(result);
+                String index = command.replaceAll("[^0-9]", "");
+                if (Integer.parseInt(index) > todoList.size()) {
+                    System.out.println("wrong index");
+                } else {
+                    int result = Integer.parseInt(index);
+                    todoList.remove(result);
+                }
                 // Добавление дела с индексом в список
             } else if (command.matches("ADD\\s\\d\\s.*")) {
                 String index = command.replaceAll("[^0-9]", "");
@@ -40,15 +42,25 @@ public class Main {
                 // изменение дела
             } else if (command.matches("EDIT\\s\\d.*")) {
                 String index = command.replaceAll("[^0-9]", "");
-                String editFunction = command.replaceAll("EDIT\\s\\d\\s", "");
-                todoList.remove(index);
-                todoList.add(Integer.parseInt(index), editFunction);
+                if (Integer.parseInt(index) > todoList.size()) {
+                    System.out.println("wrong index");
+                } else {
+                    String editFunction = command.replaceAll("EDIT\\s\\d\\s", "");
+                    todoList.remove(index);
+                    todoList.add(Integer.parseInt(index), editFunction);
+                }
                 // вывод в консоль списка
             } else if (command.matches("LIST")) {
-                for (int i = 0; i < todoList.size(); i++) {
-                    System.out.println(i + " - " + todoList.get(i));
-                }
+                printList(todoList);
+
             }
         }
     }
+
+    private static void printList(ArrayList<String> todoList) {
+        for (int i = 0; i < todoList.size(); i++) {
+            System.out.println(i + " - " + todoList.get(i));
+        }
+    }
+
 }
