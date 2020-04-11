@@ -31,23 +31,22 @@ public class Main {
                     todoList.remove(result);
                 }
                 // Добавление дела с индексом в список
-            } else if (command.matches("ADD\\s\\d\\s.*")) {
+            } else if (command.matches("ADD\\s\\d*\\s.*")) {
                 String index = command.replaceAll("[^0-9]", "");
-                String addFunction = command.replaceAll("ADD\\s\\d\\s", "");
+                String addFunction = command.replaceAll("ADD\\s\\d*\\s", "");
                 todoList.add(Integer.parseInt(index), addFunction);
                 // добавление дела
             } else if (command.matches("ADD\\s\\w*")) {
                 String addFunctionIndex = command.replaceAll("ADD\\s", "");
                 todoList.add(addFunctionIndex);
                 // изменение дела
-            } else if (command.matches("EDIT\\s\\d.*")) {
+            } else if (command.matches("EDIT\\s\\d*.*")) {
                 String index = command.replaceAll("[^0-9]", "");
                 if (Integer.parseInt(index) > todoList.size()) {
                     System.out.println("wrong index");
                 } else {
-                    String editFunction = command.replaceAll("EDIT\\s\\d\\s", "");
-                    todoList.remove(index);
-                    todoList.add(Integer.parseInt(index), editFunction);
+                    String editFunction = command.replaceAll("EDIT\\s\\d*\\s", "");
+                    todoList.set(Integer.parseInt(index), editFunction);
                 }
                 // вывод в консоль списка
             } else if (command.matches("LIST")) {
