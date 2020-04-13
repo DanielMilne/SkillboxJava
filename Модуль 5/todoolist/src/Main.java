@@ -1,19 +1,17 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Main {
 
-    public static void main(String[] args) {
+        private static ArrayList<String> todoList = new ArrayList<String>() {{
 
-        ArrayList<String> todoList = new ArrayList<String>() {{
             add("первое дело");
             add("второе дело");
         }};
         // просто оставил еще один способ
-        todoList.add("третье дело");
-
         //вывод списка в консоль
-        printList(todoList);
         // Вопрос: правильно ли я использую/декларирую переменную String command?
         String command = "null";
         Scanner scan = new Scanner(System.in);
@@ -30,17 +28,39 @@ public class Main {
                     int result = Integer.parseInt(index);
                     todoList.remove(result);
                 }
+            }
                 // Добавление дела с индексом в список
-            } else if (command.matches("ADD\\s\\d*\\s.*")) {
-                String index = command.replaceAll("[^0-9]", "");
-                String addFunction = command.replaceAll("ADD\\s\\d*\\s", "");
-                todoList.add(Integer.parseInt(index), addFunction);
-                // добавление дела
-            } else if (command.matches("ADD\\s\\w*")) {
-                String addFunctionIndex = command.replaceAll("ADD\\s", "");
-                todoList.add(addFunctionIndex);
-                // изменение дела
-            } else if (command.matches("EDIT\\s\\d*.*")) {
+                Matcher matchAddIndexed = Pattern.compile("^ADD (?<dealNo>\\d+) (?<text>.+)").matcher(command);
+                Matcher matchAdd = Pattern.compile("^ADD (?<text>.+)").matcher(command);
+
+                if (matchAddIndexed.matches()) {
+
+                    System.out.println("Команда добавения дела с индексом");
+                    String index1 = matchAddIndexed.group("dealNo");
+                    String addFunction = matchAddIndexed.group("text");
+                    todoList.add(Integer.parseInt(index1), addFunction);
+
+                } else if (matchAdd.matches()) {
+
+                    System.out.println("Команда добавения дела без индекса");
+                    String addFunction = matchAdd.group("text");
+                    todoList.add(addFunction);
+
+                } else {
+                    System.out.println("Invalid");
+                }
+
+
+//            } else if (command.matches("ADD\\s\\d*\\s.*")) {
+//                String index = command.replaceAll("[^0-9]", "");
+//                String addFunction = command.replaceAll("ADD\\s\\d*\\s", "");
+//                todoList.add(Integer.parseInt(index), addFunction);
+//               //  добавление дела
+//            } else if (command.matches("ADD\\s\\w*")) {
+//                String addFunctionIndex = command.replaceAll("ADD\\s", "");
+//                todoList.add(addFunctionIndex);
+              //   изменение дела
+              if (command.matches("EDIT\\s\\d*.*")) {
                 String index = command.replaceAll("[^0-9]", "");
                 if (Integer.parseInt(index) > todoList.size()) {
                     System.out.println("wrong index");
@@ -53,12 +73,12 @@ public class Main {
                 printList(todoList);
 
             }
-        }
+
     }
 
-    private static void printList(ArrayList<String> todoList) {
-        for (int i = 0; i < todoList.size(); i++) {
-            System.out.println(i + " - " + todoList.get(i));
+    private static void printList(ArrayList<String> todoList){
+        for (int i = 0; i < Main.todoList.size(); i++) {
+            System.out.println(i + " - " + Main.todoList.get(i));
         }
     }
 
