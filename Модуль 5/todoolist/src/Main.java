@@ -12,7 +12,6 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        // Выполнил задание с бесконечным циклом while для удобности проверки
         while (true) {
             System.out.println("Введите команду");
 
@@ -24,9 +23,10 @@ public class Main {
 
             if (matchAddIndexed.matches()) {
                 System.out.println("Команда добавения дела с индексом");
-                String index1 = matchAddIndexed.group("dealNo");
-                String addFunction = matchAddIndexed.group("text");
-                todoList.add(Integer.parseInt(index1), addFunction);
+                int index = parseIndex(matchAddIndexed);
+                if (index >= 0) {
+                    todoList.add(index, matchAddIndexed.group("text"));
+                }
             } else if (matchAdd.matches()) {
                 System.out.println("Команда добавения дела без индекса");
                 String addFunction = matchAdd.group("text");
@@ -47,7 +47,6 @@ public class Main {
             } else {
                 System.out.println("Invalid");
             }
-
         }
     }
 
@@ -57,7 +56,14 @@ public class Main {
         }
     }
 
-
+    public static int parseIndex(Matcher a) {
+        int b = Integer.parseInt(a.group("dealNo"));
+        if (b > Main.todoList.size()) {
+            System.out.println("неверный индекс");
+            b = -1;
+        }
+        return b;
+    }
 }
 
 
@@ -91,3 +97,9 @@ public class Main {
 //                    todoList.remove(result);
 //                }
 //            }
+
+
+//                }
+//                String index1 = matchAddIndexed.group("dealNo");
+//                String addFunction = matchAddIndexed.group("text");
+//                todoList.add(Integer.parseInt(index1), addFunction);
