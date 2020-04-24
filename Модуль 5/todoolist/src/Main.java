@@ -18,8 +18,8 @@ public class Main {
             String command = scan.nextLine();
             Matcher matchAdd = Pattern.compile("^ADD (?<text>.+)").matcher(command);
             Matcher matchAddIndexed = Pattern.compile("^ADD (?<dealNo>\\d+) (?<text>.+)").matcher(command);
-            Matcher matchDELETEIndexed = Pattern.compile("^DELETE (?<dealNo1>\\d+)").matcher(command);
-            Matcher matchEDITIndexed = Pattern.compile("^EDIT (?<dealNo1>\\d+) (?<text>.+)").matcher(command);
+            Matcher matchDELETEIndexed = Pattern.compile("^DELETE (?<dealNo>\\d+)").matcher(command);
+            Matcher matchEDITIndexed = Pattern.compile("^EDIT (?<dealNo>\\d+) (?<text>.+)").matcher(command);
 
             if (matchAddIndexed.matches()) {
                 System.out.println("Команда добавения дела с индексом");
@@ -33,13 +33,16 @@ public class Main {
                 todoList.add(addFunction);
             } else if (matchDELETEIndexed.matches()) {
                 System.out.println("Команда удаления дела с индексом");
-                String index = matchDELETEIndexed.group("dealNo1");
-                todoList.remove(Integer.parseInt(index));
+                int index = parseIndex(matchDELETEIndexed);
+                if (index >= 0) {
+                    todoList.remove(index);
+                }
             } else if (matchEDITIndexed.matches()) {
                 System.out.println("Команда правки дела");
-                String index = matchEDITIndexed.group("dealNo1");
-                String editFunction = matchEDITIndexed.group("text");
-                todoList.set(Integer.parseInt(index), editFunction);
+                int index = parseIndex(matchEDITIndexed);
+                if (index >= 0) {
+                    todoList.add(index, matchEDITIndexed.group("text"));
+                }
             } else if (command.matches("LIST")) {
                 printList(todoList);
             } else if (command.equals("EXIT")) {
@@ -50,19 +53,19 @@ public class Main {
         }
     }
 
-    private static void printList(ArrayList<String> todoList) {
+    private static void printList(ArrayList<String> args) {
         for (int i = 0; i < Main.todoList.size(); i++) {
             System.out.println(i + " - " + Main.todoList.get(i));
         }
     }
 
     public static int parseIndex(Matcher a) {
-        int b = Integer.parseInt(a.group("dealNo"));
-        if (b > Main.todoList.size()) {
+        int indexCheck = Integer.parseInt(a.group("dealNo"));
+        if (indexCheck > Main.todoList.size()) {
             System.out.println("неверный индекс");
-            b = -1;
+            indexCheck = -1;
         }
-        return b;
+        return indexCheck;
     }
 }
 
